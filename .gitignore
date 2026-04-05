@@ -32,3 +32,6 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+
+# Copilot build prompts — local only, not for version control
+prompts/
