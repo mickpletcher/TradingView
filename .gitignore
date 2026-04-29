@@ -13,6 +13,24 @@ __pycache__/
 *.py[cod]
 *.pyo
 
+# Python tooling caches
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+
+# Python packaging artifacts
+.eggs/
+*.egg
+pip-wheel-metadata/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python version managers
+.python-version
+
 # Pytest / test cache
 .pytest_cache/
 .cache/
@@ -28,6 +46,7 @@ build/
 # IDE
 .vscode/
 .idea/
+TradingView.code-workspace
 
 # OS
 .DS_Store
