@@ -1,0 +1,10 @@
+{
+  "symbol": "{{ticker}}",
+  "side": "buy",
+  "qty": 10,
+  "strategy": "ema_cross",
+  "price": {{close}},
+  "interval": "{{interval}}",
+  "time": "{{timenow}}",
+  "source": "tradingview"
+}

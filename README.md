@@ -1,16 +1,23 @@
-# TradingView to Alpaca Webhook Receiver
+# TradingView Automation Projects
 
-This tool connects TradingView alerts to your Alpaca brokerage account so that when a chart alert fires on TradingView, it automatically places a trade on Alpaca — no manual clicking required.
+This repo contains TradingView automation modules that receive TradingView alerts and route them into different downstream systems.
 
-## What it does
+Right now the repo includes:
+
+- `tradingview_alpaca` for direct trade execution through Alpaca
+- `tradingview_n8n` for routing alerts into an n8n workflow graph
+- root-level planning notes such as `future-upgrades.md` for broader repo expansion ideas
+
+Each subproject should have its own local analysis note so future changes can start from a concise snapshot instead of a full re-read.
+
+## What the repo does
 
 1. TradingView fires an alert on your chart (e.g. an EMA crossover).
-2. TradingView sends a message to this tool over the internet.
-3. This tool checks if the trade is safe to place (market open, account not blocked, no duplicate position, daily limit not hit).
-4. If all checks pass, the order is submitted to Alpaca.
-5. The result is logged so you can see what happened and why.
+2. TradingView sends a message to one of the repo's webhook targets over the internet.
+3. That target either routes the alert into an automation system or executes a broker action.
+4. The result is then logged, routed, or acted on downstream.
 
-By default it runs in **paper trading mode**, meaning fake money only. You have to explicitly turn on live trading.
+The `tradingview_alpaca` module runs in **paper trading mode** by default, meaning fake money only. You have to explicitly turn on live trading.
 
 ---
 
@@ -48,11 +55,27 @@ Returns submitted / skipped / error
 
 ---
 
+## Modules
+
+- [tradingview_alpaca](tradingview_alpaca/README.md)
+  Direct execution module for sending TradingView alerts to Alpaca with validation and safety checks.
+
+- [tradingview_alpaca/project-analysis.md](tradingview_alpaca/project-analysis.md)
+  Quick-reference analysis for the Alpaca subproject, including architecture, risks, validation status, and editing guidance.
+
+- [tradingview_n8n](tradingview_n8n/README.md)
+  Automation-routing module for sending TradingView alerts into n8n so they can notify, log, enrich, or fan out to other systems.
+
+- [tradingview_n8n/project-analysis.md](tradingview_n8n/project-analysis.md)
+  Quick-reference analysis for the n8n subproject, including scope, design intent, current gaps, and recommended next steps.
+
 ## Quick start
 
-Full step-by-step instructions are in the [setup and operations guide](tradingview_alpaca/README.md).
+- For broker execution with Alpaca, start with the [setup and operations guide](tradingview_alpaca/README.md).
+- For automation routing with n8n, start with [tradingview_n8n/README.md](tradingview_n8n/README.md).
+- For subproject-level context before making changes, start with [tradingview_alpaca/project-analysis.md](tradingview_alpaca/project-analysis.md) or [tradingview_n8n/project-analysis.md](tradingview_n8n/project-analysis.md).
 
-The running project assessment and analysis log is in [prompts/project-analysis/project_analysis.md](prompts/project-analysis/project_analysis.md).
+The repo-wide expansion backlog is in [future-upgrades.md](future-upgrades.md).
 
 ---
 
@@ -69,7 +92,12 @@ You do not need to touch any of these files to get started, but here is what eac
 | `tradingview_alpaca/order_manager.py` | Builds and submits orders |
 | `tradingview_alpaca/risk_filter.py` | Runs safety checks before any order |
 | `tradingview_alpaca/logger.py` | Records what happened and when |
+| `tradingview_alpaca/project-analysis.md` | Quick analysis snapshot for the Alpaca module |
 | `tradingview_alpaca/tests/` | Automated tests to confirm everything works |
+| `tradingview_n8n/README.md` | Setup and design notes for the n8n routing module |
+| `tradingview_n8n/project-analysis.md` | Quick analysis snapshot for the n8n module |
+| `tradingview_n8n/tradingview-message-example.json` | Example TradingView alert payload for n8n workflows |
+| `future-upgrades.md` | Root-level local roadmap for additional TradingView subprojects |
 
 ---
 
