@@ -52,6 +52,8 @@ Returns submitted / skipped / error
 
 Full step-by-step instructions are in the [setup and operations guide](tradingview_alpaca/README.md).
 
+The running project assessment and analysis log is in [prompts/project-analysis/project_analysis.md](prompts/project-analysis/project_analysis.md).
+
 ---
 
 ## Project file overview

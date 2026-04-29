@@ -54,3 +54,6 @@ Thumbs.db
 
 # Copilot build prompts — local only, not for version control
 prompts/
+
+# Local planning files
+future-upgrades.md
