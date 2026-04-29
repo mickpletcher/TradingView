@@ -1,0 +1,31 @@
+name: AI Context Refresh
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  update-context:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node (or remove if not needed)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run AI context generator
+        run: |
+          chmod +x scripts/generate-context.sh
+          ./scripts/generate-context.sh
+
+      - name: Commit changes
+        run: |
+          git config user.name "ai-context-bot"
+          git config user.email "bot@local"
+          git add project-analysis.md quick-context.md
+          git commit -m "update AI context files" || echo "no changes"
+          git push
